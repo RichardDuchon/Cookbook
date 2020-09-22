@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 
-namespace Cookbook.DAL
+namespace Cookbook.DAL.Entities
 {
     public class RecipeEntity : BaseIdEntity
     {
         public string RecipeName { get; set; }
         public DateTime CreateDate { get; set; }
-        public List<IngredientEntity> ListOfIngredients { get; set; }
+        public ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
         public string PreparationProcess { get; set; }
         public int Category { get; set; } //enum
         public AuthorsEntity Author { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Cookbook.DAL.Entities.Base;
 
-namespace Cookbook.DAL
+namespace Cookbook.DAL.Entities
 {
     public class UnitEntity : BaseIdEntity
     {
@@ -10,7 +10,7 @@ namespace Cookbook.DAL
 
     public enum Units
     {
-        
+
         Lžíce = 1,
         Kg = 2,
         g = 3,

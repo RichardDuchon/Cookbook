@@ -1,6 +1,6 @@
 ﻿using Cookbook.DAL.Entities.Base;
 
-namespace Cookbook.DAL
+namespace Cookbook.DAL.Entities
 {
     public class NutritionalValuesEntity : BaseIdEntity
     {
