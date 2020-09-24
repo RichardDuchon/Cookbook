@@ -4,8 +4,21 @@ namespace Cookbook.DAL.Entities
 {
     public class UnitEntity : BaseIdEntity
     {
-        public int Unit { get; set; } //enum
+        public Units Unit { get; set; }
+        //public int Unit { get; set; } //enum
         public int Quantity { get; set; }
+
+        public virtual int UnitId
+        {
+            get
+            {
+                return (int)this.Unit;
+            }
+            set
+            {
+                Unit = (Units)value;
+            }
+        }
     }
 
     public enum Units

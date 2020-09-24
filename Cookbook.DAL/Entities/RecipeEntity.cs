@@ -10,12 +10,39 @@ namespace Cookbook.DAL.Entities
         public DateTime CreateDate { get; set; }
         public ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
         public string PreparationProcess { get; set; }
-        public int Category { get; set; } //enum
+        //public int Category { get; set; } //enum
+        public Categories DifficultyCategory { get; set; }
         public AuthorsEntity Author { get; set; }
         public int TimeToPrepareInMinits { get; set; }
         public int TimeToBakeAndCookInMinits { get; set; }
         public int NumberOfServings { get; set; }
-        public int Difficulty { get; set; }//enum
+        public CookingDifficulties CookingDifficulty { get; set; }
+        //public int Difficulty { get; set; }//enum
+
+        public virtual int CookingDifficultiesId
+        {
+            get
+            {
+                return (int)this.CookingDifficulty;
+            }
+            set
+            {
+                CookingDifficulty = (CookingDifficulties)value;
+            }
+        }
+
+        public virtual int CategoryId
+        {
+            get
+            {
+                return (int)this.DifficultyCategory;
+            }
+
+            set
+            {
+                DifficultyCategory = (Categories)value;
+            }
+        }
     }
 
     public enum Categories
@@ -26,7 +53,7 @@ namespace Cookbook.DAL.Entities
         Smažení = 4
     }
 
-    public enum CookingDifficulty
+    public enum CookingDifficulties
     {
         Easy = 1,
         Medium = 2,

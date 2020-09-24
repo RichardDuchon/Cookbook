@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Cookbook.BL.Models
 {
-    class AuthorModel : ModelBase
+    public class AuthorModel : ModelBase
     {
         public string AuthorName { get; set; }
         public string Email { get; set; }
-        //public ICollection<> Recipes { get; set; } namapovaný Recepty 
+        public ICollection<RecipeNameModel> Recipes { get; set; } 
 
     }
 }
