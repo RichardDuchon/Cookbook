@@ -1,11 +1,10 @@
 ﻿using System;
-using Cookbook.DAL;
-using Cookbook.BL;
-using Cookbook.DAL.Entities;
 using Cookbook.BL.Models;
-using Cookbook.BL.Repository;
-using Cookbook.BL.MappersFile;
 using System.Collections.Generic;
+using Cookbook.DAL.Repository;
+using Cookbook.DAL.Entities;
+using Cookbook.BL.MappersFile;
+using Cookbook.BL.Facades;
 
 namespace Cookbook.App
 {
@@ -16,17 +15,35 @@ namespace Cookbook.App
         {
             List<RecipeNameModel> recipeNameModel = new List<RecipeNameModel> { new RecipeNameModel() { RecipeName = "pes" }, new RecipeNameModel() { RecipeName = "kocka" } };
 
-
             AuthorModel authorModel = new AuthorModel
             {
-                AuthorName = "Pepe",
-                Email = "kos",
+                AuthorName = "Bubu",
+                Email = "repo",
                 Recipes = recipeNameModel
             };
 
-            AuthorRepository authorRepository = new AuthorRepository(new DefaultDbContextFactory(), new Mappers());
+            AuthorModel pepa = new AuthorModel
+            { 
+                Id = 3
+            };
 
-            authorRepository.Add(authorModel);
+            //AuthorRepository authorRepository = new AuthorRepository();
+            //authorRepository.Add(authorModel);
+
+            AuthorFacade authorFacade = new AuthorFacade();
+            var pes = authorFacade.GetById(2);
+
+
+
+            foreach(var i in authorFacade.GetAll())
+            {
+                Console.WriteLine(i.AuthorName);
+            }
+
+            authorFacade.Delete(pepa);
+
+            Console.WriteLine(pes.AuthorName);
+
             Console.WriteLine("pes");
 
 

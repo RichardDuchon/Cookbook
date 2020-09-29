@@ -7,24 +7,24 @@ using System.Text;
 
 namespace Cookbook.BL
 {
-    class UnitOfWork : IDisposable
+    class UnitOfWork /*: IDisposable*/
     {
 
-        public UnitOfWork(DbContext dbContext)
-        {
-            DbContext = dbContext ?? throw new ArgumentException();
-        }
-        public DbContext DbContext { get; }
+        //public UnitOfWork(DbContext dbContext)
+        //{
+        //    DbContext = dbContext ?? throw new ArgumentException();
+        //}
+        //public DbContext DbContext { get; }
 
-        public void Dispose()
-        {
-            DbContext.Dispose();
-        }
+        //public void Dispose()
+        //{
+        //    DbContext.Dispose();
+        //}
 
-        public void Complet()
-        {
-            DbContext.SaveChanges();
-        }
+        //public void Complet()
+        //{
+        //    DbContext.SaveChanges();
+        //}
 
     }
 }

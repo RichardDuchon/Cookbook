@@ -10,20 +10,7 @@ namespace Cookbook.BL.MappersFile
     public class Mappers : Profile
     {
         private readonly IMapper _mapper;
-        //vše se tady musí upravit na ten config aby se používal jako v 1
 
-        public MapperConfiguration MapperConfiguration()
-        {
-            var config = new MapperConfiguration(conf => conf.CreateMap<AuthorModel, AuthorsEntity>());
-
-            CreateMap<AuthorModel, AuthorsEntity>();
-            return config;
-
-            //var config = new MapperConfiguration(conf => conf.CreateMap<AuthorsEntity, AuthorModel>()); // budou se muset vytvořit dvoje? Jedno model to entity a pak entity to model?
-
-            //CreateMap<AuthorsEntity, AuthorModel>();
-            //return config;
-        }
         public Mappers()
         {
 
@@ -32,20 +19,28 @@ namespace Cookbook.BL.MappersFile
         {
             this._mapper = mapper;
         }
+        //Hotovo
+        public MapperConfiguration MapperConfiguration()
+        {
+            var config = new MapperConfiguration(conf => conf.CreateMap<AuthorModel, AuthorsEntity>());
+            var pes = new MapperConfiguration(con => con.CreateMap<AuthorsEntity, AuthorModel>());
+            return config;
+            //budou se muset vytvořit dvoje? Jedno model to entity a pak entity to model?
+        }
+        
+       
+        public AuthorsEntity MapAuthorModelToAuthorEntity(AuthorModel authorModel)
+        {
+            var config = new Mapper(MapperConfiguration());
+            return config.Map<AuthorsEntity>(authorModel);
+        }
+
 
         public AuthorModel MapAuthorEntityToAuthorModel(AuthorsEntity authorsEntity)
         {
             return _mapper.Map<AuthorModel>(authorsEntity);
         }
-        public AuthorsEntity MapAuthorModelToAuthorEntity(AuthorModel authorModel)
-        {
-            //1
-
-            var config = new Mapper(MapperConfiguration());
-
-            return config.Map<AuthorsEntity>(authorModel);
-        }
-
+        
         public IEnumerable<AuthorModel> MapAuthorEntitiesListToAuthorModelsList(ICollection<AuthorsEntity> authorsEntities)
         {
             return _mapper.Map<IEnumerable<AuthorModel>>(authorsEntities);

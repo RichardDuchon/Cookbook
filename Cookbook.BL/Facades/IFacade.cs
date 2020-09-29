@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cookbook.BL.Repository.Interface
+namespace Cookbook.BL.Facades
 {
-    public interface IRepository<T> where T : class
+    public interface IFacade<T> where T : class
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
         void Add(T obj);
         void Update(T obj);
-        void Delete(int id);
-        void Save();
+        void Delete(T obj);
     }
 }

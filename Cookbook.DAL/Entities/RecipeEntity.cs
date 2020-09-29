@@ -16,6 +16,7 @@ namespace Cookbook.DAL.Entities
         public int TimeToPrepareInMinits { get; set; }
         public int TimeToBakeAndCookInMinits { get; set; }
         public int NumberOfServings { get; set; }
+        public NutritionalValuesEntity NutritionalValuesEntity { get; set; }
         public CookingDifficulties CookingDifficulty { get; set; }
         //public int Difficulty { get; set; }//enum
 
