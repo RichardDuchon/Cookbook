@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Cookbook.BL.Models;
+using Cookbook.BL.Models.Recipe;
 using Cookbook.DAL.Entities;
 using Cookbook.DAL.Repository;
 using System;
@@ -18,16 +19,17 @@ namespace Cookbook.BL.MappersFile
             {
                 cfg.CreateMap<RecipeEntity, RecipeModel>();
                 cfg.CreateMap<RecipeModel, RecipeEntity>();
+                cfg.CreateMap<RecipeEntity, RecipeListModel>();
             });
 
             return config;
         }
 
-        public List<RecipeModel> MapRecipeEntityListToRecipeModelList()
+        public List<RecipeListModel> MapRecipeEntityListToRecipeModelList()
         {
             var config = new Mapper(MapperConfiguration());
             var recipeEntities = _recipeRepository.GetAll();
-            return config.Map<List<RecipeModel>>(recipeEntities);
+            return config.Map<List<RecipeListModel>>(recipeEntities);
         }
         public RecipeModel MapRecipeEntityToRecipeModel(RecipeEntity recipeEntity)
         {
@@ -37,7 +39,6 @@ namespace Cookbook.BL.MappersFile
 
         public RecipeEntity MapRecipeModelToRecipeEntity(RecipeModel recipeModel)
         {
-            //tohle
             var config = new Mapper(MapperConfiguration());
             return config.Map<RecipeEntity>(recipeModel);
         }

@@ -1,4 +1,5 @@
 ﻿using Cookbook.BL.MappersFile;
+using Cookbook.BL.Models.Ingredient;
 using Cookbook.DAL.Repository;
 using System;
 using System.Collections.Generic;
@@ -6,30 +7,28 @@ using System.Text;
 
 namespace Cookbook.BL.Facades
 {
-    class IngredientFacade
+    public class IngredientFacade
     {
         private readonly IngredientRepository _ingredientRepository = new IngredientRepository();
         private readonly IngredientMapper _ingredientMapper = new IngredientMapper();
 
-        //public void Delete(AuthorModel obj)
-        //{
-        //    var author = authorEntityToAuthorModel.MapAuthorModelToAuthorEntity(obj);
-        //    _authorRepository.Delete(author);
-        //}
+        public void Delete(IngredientModel obj)
+        {
+            var author = _ingredientMapper.MapIngredientModelToIngredientEntity(obj);
+            _ingredientRepository.Delete(author);
+        }
 
-        //public List<AuthorListModel> GetAll()
-        //{
-        //    var authorList = _authorRepository.GetAll();
+        public List<IngredientListModel> GetAll()
+        {
+            return _ingredientMapper.MapIngredientEntityListToIngredientModelList();
+        }
 
-        //    return authorEntityToAuthorModel.MapAuthorEntityListToAuthorModelList();
-        //}
+        public IngredientModel GetById(int id)
+        {
+            var author = _ingredientRepository.GetById(id);
 
-        //public AuthorModel GetById(int id)
-        //{
-        //    var author = _authorRepository.GetById(id);
-
-        //    return authorEntityToAuthorModel.MapAuthorEntityToAuthorModel(author);
-        //}
+            return _ingredientMapper.MapIngredientEntityToIngredientModel(author);
+        }
 
     }
 }

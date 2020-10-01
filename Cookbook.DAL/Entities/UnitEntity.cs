@@ -5,7 +5,6 @@ namespace Cookbook.DAL.Entities
     public class UnitEntity : BaseIdEntity
     {
         public Units Unit { get; set; }
-        //public int Unit { get; set; } //enum
         public int Quantity { get; set; }
 
         public virtual int UnitId

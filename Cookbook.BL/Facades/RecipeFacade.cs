@@ -1,5 +1,6 @@
 ﻿using Cookbook.BL.MappersFile;
 using Cookbook.BL.Models;
+using Cookbook.BL.Models.Recipe;
 using Cookbook.DAL.Repository;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,10 @@ namespace Cookbook.BL.Facades
             _recipeRepository.Delete(recipe);
         }
 
-        //public List<AuthorListModel> GetAll()
-        //{
-        //    var authorList = _authorRepository.GetAll();
-
-        //    return _authorEntityToAuthorModel.MapAuthorEntityListToAuthorModelList();
-        //}
+        public List<RecipeListModel> GetAll()
+        {
+            return _recipeMapper.MapRecipeEntityListToRecipeModelList();
+        }
 
         public RecipeModel GetById(int id)
         {

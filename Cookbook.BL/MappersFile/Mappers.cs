@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using Cookbook.BL.Models;
+using Cookbook.BL.Models.Recipe;
 using Cookbook.DAL.Entities;
 
 namespace Cookbook.BL.MappersFile
@@ -44,11 +45,6 @@ namespace Cookbook.BL.MappersFile
         public IEnumerable<AuthorModel> MapAuthorEntitiesListToAuthorModelsList(ICollection<AuthorsEntity> authorsEntities)
         {
             return _mapper.Map<IEnumerable<AuthorModel>>(authorsEntities);
-        }
-
-        public RecipeNameModel MapRecipeEntityToRecipeNameModel(RecipeEntity recipeEntity)
-        {
-            return _mapper.Map<RecipeNameModel>(recipeEntity);
         }
 
         public RecipeModel MapRecipeEntityToRecipeModel(RecipeEntity recipeEntity)

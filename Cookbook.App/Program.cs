@@ -5,6 +5,7 @@ using Cookbook.DAL.Repository;
 using Cookbook.DAL.Entities;
 using Cookbook.BL.MappersFile;
 using Cookbook.BL.Facades;
+using Cookbook.BL.Models.Recipe;
 
 namespace Cookbook.App
 {
@@ -13,7 +14,7 @@ namespace Cookbook.App
 
         static void Main(string[] args)
         {
-            List<RecipeNameModel> recipeNameModel = new List<RecipeNameModel> { new RecipeNameModel() { RecipeName = "pes" }, new RecipeNameModel() { RecipeName = "kocka" } };
+            List<RecipeListModel> recipeNameModel = new List<RecipeListModel> { new RecipeListModel() { RecipeName = "pes" }, new RecipeListModel() { RecipeName = "kocka" } };
 
             AuthorModel authorModel = new AuthorModel
             {
@@ -40,7 +41,6 @@ namespace Cookbook.App
                 Console.WriteLine(i.AuthorName);
             }
 
-            authorFacade.Delete(pepa);
 
             Console.WriteLine(pes.AuthorName);
 

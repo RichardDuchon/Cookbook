@@ -10,7 +10,6 @@ namespace Cookbook.DAL.Entities
         public DateTime CreateDate { get; set; }
         public ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
         public string PreparationProcess { get; set; }
-        //public int Category { get; set; } //enum
         public Categories DifficultyCategory { get; set; }
         public AuthorsEntity Author { get; set; }
         public int TimeToPrepareInMinits { get; set; }
@@ -18,7 +17,6 @@ namespace Cookbook.DAL.Entities
         public int NumberOfServings { get; set; }
         public NutritionalValuesEntity NutritionalValuesEntity { get; set; }
         public CookingDifficulties CookingDifficulty { get; set; }
-        //public int Difficulty { get; set; }//enum
 
         public virtual int CookingDifficultiesId
         {

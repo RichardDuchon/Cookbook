@@ -22,8 +22,6 @@ namespace Cookbook.BL.Facades
 
         public List<AuthorListModel> GetAll()
         {
-            var authorList = _authorRepository.GetAll();
-
             return _authorMapper.MapAuthorEntityListToAuthorModelList();
         }
 

@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Cookbook.BL.Models
+namespace Cookbook.BL.Models.Recipe
 {
-    public class RecipeNameModel : ModelBase
+    public class RecipeListModel : ModelBase
     {
         public string RecipeName { get; set; }
     }
