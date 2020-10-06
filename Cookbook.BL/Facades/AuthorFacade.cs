@@ -20,15 +20,19 @@ namespace Cookbook.BL.Facades
             _authorRepository.Delete(author);
         }
 
-        public List<AuthorListModel> GetAll()
+        public List<AuthorListModel> GetAllListModels()
         {
             return _authorMapper.MapAuthorEntityListToAuthorModelList();
         }
 
+        public List<AuthorModel> GetAllModels()
+        {
+            return _authorMapper.MapListOfAuthorEntityToAuthorModel();
+        }
+            
         public AuthorModel GetById(int id)
         {
             var author = _authorRepository.GetById(id);
-
             return _authorMapper.MapAuthorEntityToAuthorModel(author);
         }
     }

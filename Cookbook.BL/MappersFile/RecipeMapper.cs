@@ -5,6 +5,7 @@ using Cookbook.DAL.Entities;
 using Cookbook.DAL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Cookbook.BL.MappersFile
@@ -17,9 +18,11 @@ namespace Cookbook.BL.MappersFile
         {
             var config = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<RecipeEntity, RecipeModel>();
+                cfg.CreateMap<RecipeEntity, RecipeModel>().ForMember(dto => dto.Ingredients, opt => opt.MapFrom(x => x.IngredientRecipes.Select(y => y.Ingredient).ToList()));
                 cfg.CreateMap<RecipeModel, RecipeEntity>();
                 cfg.CreateMap<RecipeEntity, RecipeListModel>();
+                cfg.CreateMap<AuthorModel, AuthorsEntity>();
+
             });
 
             return config;

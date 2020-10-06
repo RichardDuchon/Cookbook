@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Cookbook.BL.Facades
 {
-    class RecipeFacade
+    public class RecipeFacade
     {
         private readonly RecipeRepository _recipeRepository = new RecipeRepository();
         private readonly RecipeMapper _recipeMapper = new RecipeMapper();
@@ -29,6 +29,18 @@ namespace Cookbook.BL.Facades
             var author = _recipeRepository.GetById(id);
 
             return _recipeMapper.MapRecipeEntityToRecipeModel(author);
+        }
+
+        public void Add(RecipeModel obj)
+        {
+            var itemToAdd = _recipeMapper.MapRecipeModelToRecipeEntity(obj);
+            _recipeRepository.Add(itemToAdd);
+        }
+
+        public void Update(RecipeModel obj)
+        {
+            var itemToAdd = _recipeMapper.MapRecipeModelToRecipeEntity(obj);
+            _recipeRepository.Update(itemToAdd);
         }
     }
 }

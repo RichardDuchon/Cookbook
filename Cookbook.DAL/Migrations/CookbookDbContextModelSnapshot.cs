@@ -40,6 +40,9 @@ namespace Cookbook.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("IngredientDescription")
+                        .HasColumnType("text");
+
                     b.Property<string>("IngredientName")
                         .HasColumnType("text");
 
@@ -84,7 +87,13 @@ namespace Cookbook.DAL.Migrations
                     b.Property<int>("Proteins")
                         .HasColumnType("int");
 
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("RecipeId")
+                        .IsUnique();
 
                     b.ToTable("NutritionalValues");
                 });
@@ -95,28 +104,28 @@ namespace Cookbook.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AuthorId")
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Category")
                         .HasColumnType("int");
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CookingDifficultiesId")
+                    b.Property<int>("CookingDifficulty")
                         .HasColumnType("int");
 
-                    b.Property<int>("CookingDifficulty")
+                    b.Property<int>("CookingDifficultyId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("DifficultyCategory")
-                        .HasColumnType("int");
-
                     b.Property<int>("NumberOfServings")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NutritionalValuesEntityId")
+                    b.Property<int>("NutritionalValuesId")
                         .HasColumnType("int");
 
                     b.Property<string>("PreparationProcess")
@@ -135,8 +144,6 @@ namespace Cookbook.DAL.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.HasIndex("NutritionalValuesEntityId");
-
                     b.ToTable("Recipe");
                 });
 
@@ -146,7 +153,7 @@ namespace Cookbook.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("AuthorId")
+                    b.Property<int>("AuthorId")
                         .HasColumnType("int");
 
                     b.Property<int>("Score")
@@ -197,22 +204,31 @@ namespace Cookbook.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Cookbook.DAL.Entities.NutritionalValuesEntity", b =>
+                {
+                    b.HasOne("Cookbook.DAL.Entities.RecipeEntity", "Recipe")
+                        .WithOne("NutritionalValues")
+                        .HasForeignKey("Cookbook.DAL.Entities.NutritionalValuesEntity", "RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("Cookbook.DAL.Entities.RecipeEntity", b =>
                 {
                     b.HasOne("Cookbook.DAL.Entities.AuthorsEntity", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.HasOne("Cookbook.DAL.Entities.NutritionalValuesEntity", "NutritionalValuesEntity")
-                        .WithMany()
-                        .HasForeignKey("NutritionalValuesEntityId");
+                        .WithMany("Recipes")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Cookbook.DAL.Entities.ReviewEntity", b =>
                 {
                     b.HasOne("Cookbook.DAL.Entities.AuthorsEntity", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
+                        .WithMany("Reviews")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

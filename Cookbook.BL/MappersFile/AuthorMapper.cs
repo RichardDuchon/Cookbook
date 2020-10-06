@@ -43,6 +43,12 @@ namespace Cookbook.BL.MappersFile
             var authorEntities = _authorRepository.GetAll();
             return config.Map<List<AuthorListModel>>(authorEntities);
         }
+        public List<AuthorModel> MapListOfAuthorEntityToAuthorModel()
+        {
+            var config = new Mapper(MapperConfiguration());
+            var authorEntities = _authorRepository.GetAll();
+            return config.Map<List<AuthorModel>>(authorEntities);
+        }
         public AuthorModel MapAuthorEntityToAuthorModel(AuthorsEntity authorsEntity)
         {
             var config = new Mapper(MapperConfiguration());

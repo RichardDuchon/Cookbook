@@ -4,9 +4,9 @@ namespace Cookbook.DAL.Entities
 {
     public class UnitEntity : BaseIdEntity
     {
-        public Units Unit { get; set; }
         public int Quantity { get; set; }
 
+        public Units Unit { get; set; }
         public virtual int UnitId
         {
             get
@@ -22,7 +22,6 @@ namespace Cookbook.DAL.Entities
 
     public enum Units
     {
-
         Lžíce = 1,
         Kg = 2,
         g = 3,

@@ -6,7 +6,8 @@ namespace Cookbook.DAL.Entities
     public class IngredientEntity : BaseIdEntity
     {
         public string IngredientName { get; set; }
-        public ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
+        public string IngredientDescription { get; set; }
+        public virtual ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
 
 
     }

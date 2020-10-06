@@ -29,11 +29,9 @@ namespace Cookbook.DAL
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<IngredientRecipeEntity>().HasKey(sc => new { sc.RecipeId, sc.IngredientId });
-
-            //modelBuilder.Entity<RecipeEntity>().HasMany(t => t.IngredientEntities).WithOne(t => t.Recipe);
-            //modelBuilder.Entity<IngredientEntity>().HasOne(t => t.Recipe).WithMany(t => t.IngredientEntities);
+            modelBuilder.Entity<AuthorsEntity>().HasMany(e => e.Recipes).WithOne(e => e.Author);
+            modelBuilder.Entity<AuthorsEntity>().HasMany(e => e.Reviews).WithOne(e => e.Author);
+            modelBuilder.Entity<RecipeEntity>().HasOne(e => e.NutritionalValues).WithOne(e => e.Recipe).HasForeignKey<NutritionalValuesEntity>(e=>e.RecipeId);
         }
-
     }
-
 }

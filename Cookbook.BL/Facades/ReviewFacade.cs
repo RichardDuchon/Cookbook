@@ -18,6 +18,15 @@ namespace Cookbook.BL.Facades
             _reviewRepository.Delete(recipe);
         }
 
+        public void Add(ReviewModel obj)
+        {
+            var itemToAdd = _reviewMapper.MapReviewModelToReviewEntity(obj);
+            _reviewRepository.Add(itemToAdd);
+        }
+        public List<ReviewModel> GetAllModels()
+        {
+            return _reviewMapper.MapListOfReviewEntityToReviewModel();
+        }
         public ReviewModel GetById(int id)
         {
             var review = _reviewRepository.GetById(id);

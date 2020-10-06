@@ -9,5 +9,6 @@ namespace Cookbook.BL.Models.Review
         public AuthorModel Author { get; set; }
         public string TextOfReview { get; set; }
         public int Score { get; set; }
+
     }
 }

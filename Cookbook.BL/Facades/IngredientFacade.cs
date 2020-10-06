@@ -30,5 +30,17 @@ namespace Cookbook.BL.Facades
             return _ingredientMapper.MapIngredientEntityToIngredientModel(author);
         }
 
+        public void Add(IngredientModel ingredientModel)
+        {
+            var ingredientToAdd = _ingredientMapper.MapIngredientModelToIngredientEntity(ingredientModel);
+            _ingredientRepository.Add(ingredientToAdd);
+        }
+
+        public void Update(IngredientModel ingredientModel)
+        {
+            var ingredientToUpdate = _ingredientMapper.MapIngredientModelToIngredientEntity(ingredientModel);
+            _ingredientRepository.Update(ingredientToUpdate);
+        }
+
     }
 }

@@ -10,6 +10,7 @@ namespace Cookbook.BL.Models.Ingredient
     public class IngredientModel : ModelBase
     {
         public string IngredientName { get; set; }
-        public ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
+        public string IngredientDescription { get; set; }
+        public ICollection<RecipeModel> Recipes { get; set; }
     }
 }

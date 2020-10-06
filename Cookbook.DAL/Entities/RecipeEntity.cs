@@ -10,15 +10,15 @@ namespace Cookbook.DAL.Entities
         public DateTime CreateDate { get; set; }
         public ICollection<IngredientRecipeEntity> IngredientRecipes { get; set; }
         public string PreparationProcess { get; set; }
-        public Categories DifficultyCategory { get; set; }
-        public AuthorsEntity Author { get; set; }
+        public int AuthorId { get; set; }
+        public virtual AuthorsEntity Author { get; set; }
         public int TimeToPrepareInMinits { get; set; }
         public int TimeToBakeAndCookInMinits { get; set; }
         public int NumberOfServings { get; set; }
-        public NutritionalValuesEntity NutritionalValuesEntity { get; set; }
+        public int NutritionalValuesId { get; set; }
+        public virtual NutritionalValuesEntity NutritionalValues { get; set; }
         public CookingDifficulties CookingDifficulty { get; set; }
-
-        public virtual int CookingDifficultiesId
+        public virtual int CookingDifficultyId
         {
             get
             {
@@ -29,17 +29,18 @@ namespace Cookbook.DAL.Entities
                 CookingDifficulty = (CookingDifficulties)value;
             }
         }
+        public Categories Category { get; set; }
 
         public virtual int CategoryId
         {
             get
             {
-                return (int)this.DifficultyCategory;
+                return (int)this.Category;
             }
 
             set
             {
-                DifficultyCategory = (Categories)value;
+                Category = (Categories)value;
             }
         }
     }

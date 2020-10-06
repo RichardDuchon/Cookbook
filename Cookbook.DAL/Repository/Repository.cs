@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cookbook.DAL.Repository
 {
@@ -56,6 +57,7 @@ namespace Cookbook.DAL.Repository
         {
             using (var dbContext = _defaultDbContextFactory.CreateDbContext())
             {
+                dbContext.Entry(obj).State = EntityState.Modified;
                 dbContext.Dispose();
             }
         }

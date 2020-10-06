@@ -6,6 +6,8 @@ using Cookbook.DAL.Entities;
 using Cookbook.BL.MappersFile;
 using Cookbook.BL.Facades;
 using Cookbook.BL.Models.Recipe;
+using System.Linq;
+using Cookbook.BL.Models.Ingredient;
 
 namespace Cookbook.App
 {
@@ -14,39 +16,30 @@ namespace Cookbook.App
 
         static void Main(string[] args)
         {
-            List<RecipeListModel> recipeNameModel = new List<RecipeListModel> { new RecipeListModel() { RecipeName = "pes" }, new RecipeListModel() { RecipeName = "kocka" } };
+            IngredientFacade ingredientFacade = new IngredientFacade();
 
-            AuthorModel authorModel = new AuthorModel
+
+            List<IngredientModel> ingredientModels = new List<IngredientModel>();
+            ingredientModels.Add(ingredientFacade.GetById(1));
+
+
+            RecipeFacade recipeFacade = new RecipeFacade();
+
+            RecipeModel recipeModel = new RecipeModel
             {
-                AuthorName = "Bubu",
-                Email = "repo",
-                Recipes = recipeNameModel
+                CookingDifficulty = CookingDifficulties.Hard,
+                CreateDate = DateTime.Now,
+                Category = Categories.Dušení,
+                NumberOfServings = 5,
+                PreparationProcess = "Uvařte pokapte snězte",
+                RecipeName = "Bábovka",
+                TimeToBakeAndCookInMinits = 50,
+                TimeToPrepareInMinits = 70,
+                Ingredients = ingredientModels,
+                AuthorId = 1,
             };
 
-            AuthorModel pepa = new AuthorModel
-            { 
-                Id = 3
-            };
-
-            //AuthorRepository authorRepository = new AuthorRepository();
-            //authorRepository.Add(authorModel);
-
-            AuthorFacade authorFacade = new AuthorFacade();
-            var pes = authorFacade.GetById(2);
-
-
-
-            foreach(var i in authorFacade.GetAll())
-            {
-                Console.WriteLine(i.AuthorName);
-            }
-
-
-            Console.WriteLine(pes.AuthorName);
-
-            Console.WriteLine("pes");
-
-
+            Console.WriteLine(recipeFacade.GetById(2).CookingDifficulty);
         }
     }
 }
